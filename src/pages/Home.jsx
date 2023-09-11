@@ -3,11 +3,21 @@ import QRCode from "react-qr-code";
 import { Button, TextField } from "@mui/material";
 import SideDrawer from "../components/SideDrawer";
 import { QrContext } from "../context/QrContext";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigation = useNavigate();
   const { text, setText } = useContext(QrContext);
   const [value, setValue] = React.useState("");
   console.log(text.text);
+
+  const user = localStorage.getItem("user");
+
+  React.useEffect(() => {
+    if (user === null) {
+      navigation("/login");
+    }
+  }, [user]);
 
   const createNewQr = async () => {
     try {

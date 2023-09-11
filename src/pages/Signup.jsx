@@ -70,6 +70,7 @@ function Signup() {
         <TextField
           label="password"
           placeholder="password"
+          type="password"
           sx={{ marginTop: "10px", marginBottom: "30px" }}
           onChange={(e) => setUser({ ...user, password: e.target.value })}
         />
@@ -88,6 +89,9 @@ function Signup() {
               color: "white",
               width: "100px",
               marginBottom: "10px",
+              "&:hover": {
+                backgroundColor: "#007791",
+              },
             }}
             onClick={() => signupHandler()}
           >

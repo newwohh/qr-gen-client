@@ -9,22 +9,22 @@ import { QrContext } from "./context/QrContext";
 function App() {
   const [text, setText] = React.useState({ _id: "", text: "", current: false });
   const user = localStorage.getItem("user");
-  const navigation = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
   console.log(user);
 
   React.useEffect(() => {
-    if (user === null) {
-      navigation("/login");
+    if (user !== null) {
+      setIsLoggedIn(true);
     } else {
-      navigation("/");
+      setIsLoggedIn(false);
     }
-  }, []);
+  }, [user]);
 
   return (
     <div className="App">
       <QrContext.Provider value={{ text, setText }}>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={isLoggedIn ? <Home /> : <Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>

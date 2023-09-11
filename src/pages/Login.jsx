@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 function Login() {
   const navigation = useNavigate();
-
   const [user, setUser] = React.useState({
     email: "",
     password: "",
@@ -69,6 +68,7 @@ function Login() {
         <TextField
           label="password"
           placeholder="password"
+          type="password"
           sx={{
             marginTop: "10px",
             marginBottom: "30px",
@@ -89,6 +89,9 @@ function Login() {
               color: "white",
               width: "100px",
               marginBottom: "10px",
+              "&:hover": {
+                backgroundColor: "#007791",
+              },
             }}
             onClick={() => loginHandler()}
           >
