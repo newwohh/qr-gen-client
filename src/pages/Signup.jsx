@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Link, TextField, Typography } from "@mui/material";
+import { Box, Button, Link, TextField, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 function Signup() {
@@ -9,8 +9,25 @@ function Signup() {
     username: "",
     password: "",
   });
+  const [userError, setUserError] = React.useState(true);
+
+  function validateUser(user) {
+    if (
+      !user.username ||
+      !user.email ||
+      !user.password ||
+      !user.password.length > 8 ||
+      !/^(?=.*[A-Z])(?=.*\d)/.test(user.password) ||
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(user.email)
+    ) {
+      return false;
+    }
+
+    return true;
+  }
 
   const signupHandler = async () => {
+    setUserError(validateUser(user));
     try {
       const request = await fetch(
         "https://qrgen-backend.onrender.com/api/v1/users/signup",
@@ -59,6 +76,13 @@ function Signup() {
         <Typography variant="h3" sx={{ fontWeight: 1000, color: "#6CB4EE" }}>
           Register
         </Typography>
+        {userError || (
+          <Box sx={{ width: "250px" }}>
+            Please provide a valid username, a valid email, and a password that
+            is at least 8 characters long, containing at least one uppercase
+            letter and one number.
+          </Box>
+        )}
         <TextField
           label="email"
           placeholder="email"
