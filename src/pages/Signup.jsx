@@ -68,38 +68,48 @@ function Signup() {
         style={{
           display: "flex",
           flexDirection: "column",
-          padding: "90px",
+          padding: "60px",
           borderRadius: "50px",
           backgroundColor: "white",
+          width: "350px",
+          textAlign: "center",
+          alignItems: "center",
         }}
       >
-        <Typography variant="h3" sx={{ fontWeight: 1000, color: "#6CB4EE" }}>
+        <Typography
+          variant="h3"
+          sx={{ fontWeight: 1000, color: "#6CB4EE", textAlign: "center" }}
+        >
           Register
         </Typography>
         {userError || (
-          <Box sx={{ width: "250px" }}>
-            Please provide a valid username, a valid email, and a password that
-            is at least 8 characters long, containing at least one uppercase
-            letter and one number.
+          <Box sx={{ width: "250px", textAlign: "center" }}>
+            <Typography
+              sx={{ fontSize: "13px", color: "red", textAlign: "center" }}
+            >
+              Please provide a valid username, a valid email, and a password
+              that is at least 8 characters long, containing at least one
+              uppercase letter and one number.
+            </Typography>
           </Box>
         )}
         <TextField
           label="email"
           placeholder="email"
-          sx={{ marginTop: "20px" }}
+          sx={{ marginTop: "20px", width: "300px" }}
           onChange={(e) => setUser({ ...user, email: e.target.value })}
         />
         <TextField
           label="username"
           placeholder="username"
-          sx={{ marginTop: "10px" }}
+          sx={{ marginTop: "10px", width: "300px" }}
           onChange={(e) => setUser({ ...user, username: e.target.value })}
         />
         <TextField
           label="password"
           placeholder="password"
           type="password"
-          sx={{ marginTop: "10px", marginBottom: "30px" }}
+          sx={{ marginTop: "10px", marginBottom: "20px", width: "300px" }}
           onChange={(e) => setUser({ ...user, password: e.target.value })}
         />
 
@@ -115,7 +125,8 @@ function Signup() {
             sx={{
               backgroundColor: "#007791",
               color: "white",
-              width: "100px",
+              width: "150px",
+              padding: "10px",
               marginBottom: "10px",
               "&:hover": {
                 backgroundColor: "#007791",
