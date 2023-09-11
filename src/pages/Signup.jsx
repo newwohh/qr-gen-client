@@ -1,7 +1,9 @@
 import React from "react";
 import { Button, Link, TextField, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
+  const navigation = useNavigate();
   const [user, setUser] = React.useState({
     email: "",
     username: "",
@@ -26,7 +28,9 @@ function Signup() {
         }
       );
       const response = await request.json();
-
+      if (response.message === "User signed up successfully") {
+        navigation("/login");
+      }
       console.log(response);
     } catch (error) {
       console.log(error);
